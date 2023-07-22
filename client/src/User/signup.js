@@ -21,7 +21,7 @@ const UserSignUp = () => {
   
   useEffect(()=>{
     const getallmandals = async() =>{
-        const get = axios.get("http://localhost:5000/api/getallmandals")
+        const get = axios.get("/api/getallmandals")
         .then((res)=>{
   
           // console.log(res)
