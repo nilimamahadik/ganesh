@@ -15,8 +15,10 @@ const [amount, setAmount] = useState("")
   // console.log(info);
   
   const user_management = async (props) => {
-    const get = axios.post(`http://localhost:5000/api/user_management`, props)
+    console.log(props);
+    const get = axios.post(`/api/user_management`, props)
       .then((res) => {
+        console.log(res);
           setData(res.data.data);
         //  setCount(res.data);
       })
@@ -62,7 +64,7 @@ const [amount, setAmount] = useState("")
   }, []);
  
 const handleSubmit = (id) => {
-const patch = axios.patch(`http://localhost:5000/api/update/${id}`)
+const patch = axios.patch(`/api/update/${id}`)
 .then((res) =>{
   user_management();
   return res;

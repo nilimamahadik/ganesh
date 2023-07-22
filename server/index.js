@@ -4,16 +4,18 @@ const env= require('dotenv');
 const app = express();
 const mongoose =require('mongoose');
 app.use(express.json())
-var cors = require('cors');
+const helmet = require('helmet');
 
-app.use(cors());
+app.use(helmet());
 env.config();
 
 
 const authRoutes =require("./src/routes/user");
 
+const MONGO_URL =process.env.MONGO_URL 
 
-mongoose.connect('mongodb+srv://nilima23101998:mandal123@cluster0.lrrw8on.mongodb.net/?retryWrites=true&w=majority' )
+
+mongoose.connect(MONGO_URL)
   .then(() => {
     console.log("Database connected");
   })
@@ -26,11 +28,6 @@ mongoose.connect('mongodb+srv://nilima23101998:mandal123@cluster0.lrrw8on.mongod
 app.get('/', (req, res) => {
     res.send("welcome")
 })
-
-
-
-    
- 
 
 app.listen(process.env.PORT, ()=>{
   console.log(`server is ready for port ${process.env.PORT}`)

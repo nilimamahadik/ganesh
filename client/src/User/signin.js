@@ -3,6 +3,7 @@ import React, { Component, useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AccountContext } from "../context/AccountProvider";
+import axios from "axios";
 
 const UserLogin = () => {
   const { setUser } = useContext(AccountContext);
@@ -17,11 +18,14 @@ const UserLogin = () => {
     setPassword("");
   }, []);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-localStorage.clear();
-// setLoading(true)
-    fetch("http://localhost:5000/api/authenticate_user", {
+    const form = {
+      email,
+      password,
+    }
+
+    fetch("/authenticate_user", {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -36,20 +40,16 @@ localStorage.clear();
     })
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data, "userRegister");
+        console.log(data);
         // console.log(data.status == "User");
         if (data.status == "User") {
-          setUser(data);
-          
+          console.log(data);
           alert("login successful");
-          localStorage.setItem("user", JSON.stringify(data));
-
+          localStorage.setItem("link", JSON.stringify(data));
+          setUser(data);
           navigate(`/form/${data.id}`)
-// setLoading(false);
-          // window.localStorage.setItem("token", data.data);
-          // window.localStorage.setItem("loggedIn", true);
 
-        }else{
+        } else {
           alert(JSON.stringify(data.error));
         }
       });

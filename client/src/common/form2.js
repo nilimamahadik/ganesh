@@ -137,7 +137,7 @@ const FormExampleAdmin = () => {
   }
   const getallusers = async () => {
 
-    const get = axios.get(`http://localhost:5000/api/getallusers/${params.id}`)
+    const get = axios.get(`/api/getallusers/${params.id}`)
       .then((res) => {
         setData(res.data.data);
         //  console.log(res.data);
@@ -157,7 +157,7 @@ const FormExampleAdmin = () => {
       const parsedInfo = JSON.parse(savedInfo);
       setValue(parsedInfo);
     }
- }, []);
+  }, []);
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = {
@@ -165,7 +165,7 @@ const FormExampleAdmin = () => {
       address: formData.address,
       amount: formData.amount,
       group_id: params.id,
-      receiver:value.name
+      receiver: value.name
     };
     setFormData({
       name: "",
@@ -178,7 +178,7 @@ const FormExampleAdmin = () => {
     const first = () => {
       // console.log(form);
       return axios
-        .post("http://localhost:5000/api/submit", form)
+        .post("/api/submit", form)
         .then((response) => {
           getallusers()
           return response;
@@ -193,89 +193,88 @@ const FormExampleAdmin = () => {
 
   }
 
-
-  // console.log(value)
-  // console.log(users);
   return (
-          <>
-        <div className="card column-design" >
-          <div className="card-body" style={{ backgroundImage: 'url()' }}>
-            <div className="front" style={{ backgroundColor: '#FA7D09' }}>
+    <>
+      <div className="card column-design" >
+        <div className="card-body" style={{ backgroundImage: 'url()' }}>
+          <div className="front" style={{ backgroundColor: '#FA7D09' }}>
+            <Link to="/">
+              <Button variant="contained">Log Out</Button>
+            </Link>
+            <Typography variant="h6" align="center">
+              <b>|| श्री गणेशाय नमः ||</b>
+            </Typography>
+            <br />
+            <Typography variant="h2" align="center">
+              <b>{value.id}</b>
+            </Typography>
+            <Typography variant="h5" align="center">
+              {value.address}
+            </Typography>
+            <hr />
+          </div>
+          <div>
+          </div>
+          <br /><br />
+          <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <form onSubmit={handleSubmit} style={{ border: '2px solid black', padding: '40px', borderColor: "Green" }}>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <label htmlFor="नाव"><b>नाव:</b></label> &nbsp;&nbsp;
+                <TextField
+                  label="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleonchange}
+                  required
+                />
+              </div>
 
-              <Typography variant="h6" align="center">
-                <b>|| श्री गणेशाय नमः ||</b>
-              </Typography>
-              <br />
-              <Typography variant="h2" align="center">
-                <b>{value.id}</b>
-              </Typography>
-              <Typography variant="h5" align="center">
-                {value.address}
-              </Typography>
-              <hr />
-            </div>
-            <div>
-            </div>
-            <br /><br />
-            <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-              <form onSubmit={handleSubmit} style={{ border: '2px solid black', padding: '40px', borderColor: "Green" }}>
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                  <label htmlFor="नाव"><b>नाव:</b></label> &nbsp;&nbsp;
-                  <TextField
-                    label="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleonchange}
-                    required
-                  />
-                </div>
-
-                <br /><br />
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                  <label htmlFor="पत्ता"><b>पत्ता:</b></label> &nbsp;&nbsp;
-                  <TextField
-                    type="text"
-                    label="address"
-                    name='address'
-                    value={formData.address}
-                    onChange={handleonchange}
-                    required
-                    multiline
-                  />
-                </div>
-                <br /><br />
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                  <label htmlFor="रक्कम"><b>रक्कम:</b></label> &nbsp;&nbsp;
-                  <TextField
-                    label="amount"
-                    name='amount'
-                    value={formData.amount}
-                    onChange={handleonchange}
-                    required
-                    type="text"
-                  />
-                </div>
-                <br /><br />
-                <div style={{ display: 'flex' }}>
-                  <Button variant="contained" type="submit">Save</Button>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <Button variant="contained" onClick={() => navigate("/userlist")} aria-label="User Management">User Management</Button>
-                </div>
-              </form>
-            </div>
+              <br /><br />
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <label htmlFor="पत्ता"><b>पत्ता:</b></label> &nbsp;&nbsp;
+                <TextField
+                  type="text"
+                  label="address"
+                  name='address'
+                  value={formData.address}
+                  onChange={handleonchange}
+                  required
+                  multiline
+                />
+              </div>
+              <br /><br />
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <label htmlFor="रक्कम"><b>रक्कम:</b></label> &nbsp;&nbsp;
+                <TextField
+                  label="amount"
+                  name='amount'
+                  value={formData.amount}
+                  onChange={handleonchange}
+                  required
+                  type="text"
+                />
+              </div>
+              <br /><br />
+              <div style={{ display: 'flex' }}>
+                <Button variant="contained" type="submit">Save</Button>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <Button variant="contained" onClick={() => navigate("/userlist")} aria-label="User Management">User Management</Button>
+              </div>
+            </form>
+          </div>
+          <br></br>
+          <div>
+            <h2><u>Contributors</u></h2>
+            <CustomTable data={data} />
+            <td>
+            </td>
             <br></br>
-            <div>
-              <h2><u>Contributors</u></h2>
-              <CustomTable data={data} />
-              <td>
-              </td>
-              <br></br>
-            </div>
           </div>
         </div>
-    
+      </div>
+
     </>
-   );
+  );
 
 }
 export default FormExampleAdmin;

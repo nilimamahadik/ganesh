@@ -8,6 +8,7 @@ import ganeshji1 from './image/ganeshji1.jpg'
 
 
 function App() {
+  localStorage.clear()
   return (
     <>
       <div className="container">

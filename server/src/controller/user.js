@@ -58,7 +58,7 @@ exports.create_user_account = async (req, res) => {
 }
 
 exports.authenticate_user = async (req, res) => {
-
+// console.log(req.body);
   try {
     const { email, password } = req.body;
     // Check if user exists

@@ -13,7 +13,7 @@ const AdminSignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:5000/api/create_admin_account", {
+    fetch("/api/create_admin_account", {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -49,7 +49,7 @@ const AdminSignUp = () => {
         <form onSubmit={handleSubmit}>
           <h3>Sign Up</h3>
           <div className="mb-3">
-          <label>Mandal Name</label>
+          <label>Association Name</label>
             <input
               type="text"
               className="form-control"

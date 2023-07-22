@@ -13,8 +13,7 @@ const {setInfo} = useContext(AccountContext);
   
   function handleSubmit(e) {
     e.preventDefault();
-    localStorage.clear()
-    fetch("http://localhost:5000/api/authenticate_admin", {
+    fetch("/api/authenticate_admin", {
       method: "POST",
       crossDomain: true,
       headers: {

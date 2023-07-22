@@ -34,10 +34,30 @@ const UserSignUp = () => {
     getallmandals();
 }, [])
 
-  const handleSubmit = (e) => {
+   const handleSubmit = async(e) => {
     e.preventDefault();
 
-    fetch("http://localhost:5000/api/create_user_account", {
+    // const form ={
+    //   mandalname,
+    //   name,
+    //   phone,
+    //   address,
+    //   email,
+    //   password,
+    //    status : "pending"
+    // }
+    // const save = await axios.post("http://localhost:5000/api/create_user_account", form)
+    // if (save.data.status === "User") {
+
+    //   alert("Registration Successful");
+    //   navigate(`/userlogin`)
+
+    // } else {
+    //   alert("Something went wrong");
+
+
+    // }
+    fetch("api/create_user_account", {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -87,7 +107,7 @@ const UserSignUp = () => {
           </div> */}
 
 <div className="mb-3">
-  <label>Mandal Name</label>
+  <label>Association Name</label>
   <select
     className="form-control"
     onChange={(e) => handleSelectChange(e)}

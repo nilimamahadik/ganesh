@@ -6,7 +6,7 @@ const admin = require('../models/admin');
 const User = require('../models/user')
 
 exports.update = async (req, res) => {
-  console.log(req.params);
+  // console.log(req.params);
 try {
 const update = await User.findOneAndUpdate(
   {_id: req.params.id},
