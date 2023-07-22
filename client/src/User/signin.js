@@ -25,7 +25,7 @@ const UserLogin = () => {
       password,
     }
 
-    fetch("/authenticate_user", {
+    fetch("/api/authenticate_user", {
       method: "POST",
       crossDomain: true,
       headers: {
