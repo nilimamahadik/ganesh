@@ -1,9 +1,5 @@
 const mongoose = require("mongoose")
 
-
-
-
-
 const applySchema = new mongoose.Schema(
 
 {
@@ -23,6 +19,14 @@ const applySchema = new mongoose.Schema(
 
     },
 
+    registration:{
+
+        type: Number,
+
+        required: true
+
+    },
+
     phone:{
 
         type:Number,
@@ -37,7 +41,13 @@ const applySchema = new mongoose.Schema(
         required: true
 
     },
+    pincode:{
 
+        type:Number,
+
+        required: true
+
+    },
     email:{
 
         type:String,
@@ -52,10 +62,13 @@ const applySchema = new mongoose.Schema(
         required: true
 
     },
+    active:{
 
+        type:String,
 
+        required: true
 
-
+    },
 },
 
 {timestamp: true}

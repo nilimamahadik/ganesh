@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState , useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AccountContext } from "../context/AccountProvider";
@@ -10,10 +10,19 @@ const {setInfo} = useContext(AccountContext);
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  
-  function handleSubmit(e) {
+  useEffect(() => {
+    setEmail("");
+    setPassword("");
+  }, []);
+
+  async function handleSubmit(e) {
     e.preventDefault();
-    fetch("/api/authenticate_admin", {
+    const form = {
+      email,
+      password,
+    }
+
+    fetch(`/api/authenticate_admin`, {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -29,16 +38,31 @@ const {setInfo} = useContext(AccountContext);
       .then((res) => res.json())
       .then((data) => {
         // console.log(data, "userRegister");
-        if (data.status == "Admin") {
-          alert("login successful");
-         localStorage.setItem("info", JSON.stringify(data));
-         setInfo(data)
-         navigate(`/form/admin/${data.id}`)
-          // window.localStorage.setItem("loggedIn", true);
-       }
+        // console.log(data)
+      //   if (data.status == "Admin") {
+      //     if(data.active == "success"){
+      //     alert("login successful");
+      //    localStorage.setItem("info", JSON.stringify(data));
+      //    setInfo(data)
+      //    navigate(`/form/admin/${data.id}`)
+      //     // window.localStorage.setItem("loggedIn", true);}
+      //  }
+      //  else{
+      //   alert("login pending");
+      //  }
+      // }
+      if (data.status === "Admin" && data.active === "success") {
+        alert("Login successful");
+        localStorage.setItem("info", JSON.stringify(data));
+        setInfo(data);
+        navigate(`/form/admin/${data.id}`);
+      } else {
+        alert("Kindly Complete Your KYC to Login");
+      }
+      
       });
+    
   }
-
   return (
     <div className="auth-wrapper">
       <div className="auth-inner">

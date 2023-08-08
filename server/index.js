@@ -5,7 +5,8 @@ const app = express();
 const mongoose =require('mongoose');
 app.use(express.json())
 const helmet = require('helmet');
-
+// var cors = require('cors')
+// app.use(cors())
 app.use(helmet());
 env.config();
 
@@ -20,7 +21,7 @@ mongoose.connect(MONGO_URL)
     console.log("Database connected");
   })
   .catch((error) => {
-    console.log(error.message);
+    console.log("error ::", error.message);
   });
 
   app.use('/api', authRoutes);

@@ -1,7 +1,7 @@
 const express= require('express');
 const { create_user_account, authenticate_user } = require('../controller/user');
 const { create_admin_account, authenticate_admin,getallmandals, user_management, update } = require('../controller/admin');
-const { submit_form, getallusers, getsingleusers } = require('../controller/receipt');
+const { submit_form, getallusers, getsingleusers, getallinfo } = require('../controller/receipt');
 
 // const { validateSignupRequest, isRequestValidated, validateSigninRequest } = require('../validators/auth');
 // const {createRecords,getRecords} = require('../controller/records');
@@ -22,8 +22,9 @@ router.post('/create_user_account', create_user_account);
  router.patch('/update/:id',update);
 // router.put('/update_user_metadata',  update_user_metadata);
 router.get("/getallmandals",getallmandals)
+router.get("/getallinfo",getallinfo)
 // router.get("/getrecords",getRecords)
-
+// http://localhost:5000/api/getallinfo/userData
 module.exports= router;
   
 

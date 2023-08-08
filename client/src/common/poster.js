@@ -75,8 +75,9 @@ const [value, setValue] = useState({});
     }
    
   }, []);
-// console.log(value);
-console.log(data);
+// console.log(value.id);
+// console.log(data);
+// console.log(value.group_id);
   return (
     <>
  

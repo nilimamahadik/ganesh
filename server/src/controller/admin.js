@@ -14,7 +14,7 @@ const update = await User.findOneAndUpdate(
     $set: {
 status: "success"
     }
-  },
+  }, 
   {new:true}
   )
   if(update) {
@@ -57,6 +57,7 @@ exports.create_admin_account = async (req, res) => {
 // console.log(req.body);
   try {
     const admin = await Admin.findOne({ email: req.body.email }).exec();
+    console.log("ADMIN :: ", admin)
     if (admin) return res.status(400).json({
       message: ' Admin already registered'
     });
@@ -64,10 +65,13 @@ exports.create_admin_account = async (req, res) => {
     const {
       mandalname,
       name,
+      registration,
       phone,
       address,
+      pincode,
       email,
-      password
+      password,
+    active
     } = req.body;
 
     // console.log(password)
@@ -75,16 +79,20 @@ exports.create_admin_account = async (req, res) => {
     const _admin = new Admin({
       mandalname,
       name,
+      registration,
       phone,
       address,
+      pincode,
       email,
-      password
+      password,
+     active
 
     });
+    // console.log(password);
 
     _admin.password = await bcrypt.hash(password, 10,)
 
-    //console.log("USER :: ",_user)
+    // console.log("USER :: ",_user)
 
     const savedAdmin = await _admin.save();
     if (savedAdmin) {
@@ -95,6 +103,7 @@ exports.create_admin_account = async (req, res) => {
         status:"Admin"
       })
     }
+    // console.log(res);
 
   } catch (error) {
     return res.status(400).json({
@@ -111,10 +120,17 @@ exports.authenticate_admin = async (req, res) => {
     // Check if user exists
 
     await Admin.findOne({ email }).then((user) => {
+      // console.log(user);
       // console.log("EMAIL :: ", user)
       if (!user) {
         return res.status(400).json({ error: "Invalid email or password" });
       }
+      else if(user.active == "pending"){
+        return res.status(400).json({ error: "Your Request is Pending , Admin not accepted yet" });   
+      }
+      // else if(user.active == "success"){
+      //   return res.status(400).json({ error: "Your Request is accepted " });   
+      // }
       bcrypt.compare(password, user.password, function (error, isMatch) {
         // console.log("MATCH :: ", isMatch)
         if (isMatch) {
@@ -129,7 +145,8 @@ exports.authenticate_admin = async (req, res) => {
               status: "Admin",
               id: user.mandalname,
               address: user.address,
-              name: user.name
+              name: user.name,
+              active: user.active
             })
           })
         }

@@ -9,11 +9,13 @@ const AdminSignUp = () => {
   const [password, setPassword] = useState("");
   const [address, setAddress] = useState("");
   const [mandalname, setMandalName] = useState("");
+  const [registration, setRegistration] = useState("")
+  const [pincode , setPincode] = useState("")
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch("/api/create_admin_account", {
+    fetch(`/api/create_admin_account`, {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -23,11 +25,14 @@ const AdminSignUp = () => {
       },
       body: JSON.stringify({
         mandalname,
+        registration,
         name,
         phone,
         address,
+        pincode,
         email,
-        password
+        password,
+        active:"pending"
        
       }),
     })
@@ -58,9 +63,19 @@ const AdminSignUp = () => {
             />
             
           </div>
+          <div>
+          <label>Registration Number</label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Registration Number"
+              onChange={(e) => setRegistration(e.target.value)}
+            />
+            
+          </div>
 
           <div className="mb-3">
-            <label>Name</label>
+            <label>Full Name</label>
             <input
               type="text"
               className="form-control"
@@ -84,6 +99,15 @@ const AdminSignUp = () => {
               className="form-control"
               placeholder="Address"
               onChange={(e) => setAddress(e.target.value)}
+            />
+          </div>
+          <div className="mb-3">
+            <label>Pin Code</label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Pin Code"
+              onChange={(e) => setPincode(e.target.value)}
             />
           </div>
           <div className="mb-3">

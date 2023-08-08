@@ -70,9 +70,7 @@ exports.authenticate_user = async (req, res) => {
       }else if(user.status == "pending"){
         return res.status(400).json({ error: "Your Request is Pending , Admin not accepted yet" });   
       }
-
-
-      bcrypt.compare(password, user.password, function (error, isMatch) {
+   bcrypt.compare(password, user.password, function (error, isMatch) {
         // console.log("MATCH :: ", isMatch)
         if (isMatch) {
           const payload = {

@@ -57,7 +57,7 @@ const UserSignUp = () => {
 
 
     // }
-    fetch("api/create_user_account", {
+    fetch("/api/create_user_account", {
       method: "POST",
       crossDomain: true,
       headers: {

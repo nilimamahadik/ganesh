@@ -9,8 +9,10 @@ import { Typography } from '@material-ui/core';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button'
-
+import Drawer from "./drawer";
 import { AccountContext } from "../context/AccountProvider";
+import {RWebShare} from "react-web-share";
+
 
 function CustomTable({ data }) {
   const [columnItems, setColumnItems] = useState([]);
@@ -49,6 +51,29 @@ function CustomTable({ data }) {
           <Button variant="contained">View Receipt</Button>
         </Link>
       ),
+    },
+    {
+
+      title: "Share",
+
+      dataIndex: "share",
+
+      key: "share",
+      render: (text, record) => (
+        <RWebShare
+          data={{
+            text: "ONLINE BHARAT",
+            url: `${window.location.protocol}//${window.location.host}/poster/${record._id}`,
+            title: "ONLINE BHARAT",
+          }}
+        >
+        
+          <Button variant="contained">Share </Button>
+        </RWebShare>
+      )
+
+
+
     },
 
   ];
@@ -149,6 +174,7 @@ const FormExampleAdmin = () => {
   }
   useEffect(() => {
     getallusers();
+    
   }, []);
 
   useEffect(() => {
@@ -198,9 +224,10 @@ const FormExampleAdmin = () => {
       <div className="card column-design" >
         <div className="card-body" style={{ backgroundImage: 'url()' }}>
           <div className="front" style={{ backgroundColor: '#FA7D09' }}>
-            <Link to="/">
+            {/* <Link to="/">
               <Button variant="contained">Log Out</Button>
-            </Link>
+            </Link> */}
+             <Drawer />
             <Typography variant="h6" align="center">
               <b>|| श्री गणेशाय नमः ||</b>
             </Typography>
@@ -257,8 +284,8 @@ const FormExampleAdmin = () => {
               <br /><br />
               <div style={{ display: 'flex' }}>
                 <Button variant="contained" type="submit">Save</Button>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <Button variant="contained" onClick={() => navigate("/userlist")} aria-label="User Management">User Management</Button>
+                {/* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <Button variant="contained" onClick={() => navigate("/userlist")} aria-label="User Management">User Management</Button> */}
               </div>
             </form>
           </div>
@@ -278,6 +305,8 @@ const FormExampleAdmin = () => {
 
 }
 export default FormExampleAdmin;
+
+
 
 
 

@@ -101,7 +101,7 @@ exports.getallusers = async (req, res)  => {
   // console.log(req.params);
     try{
 const allusers = await receipt.find({group_id:req.params.id})
-// console.log(allusers.length);
+// console.log(allusers);
 return res.status(201).json({
     data: allusers,
     status:"success",
@@ -129,4 +129,22 @@ return res.status(201).json({
   catch(err){
 console.log(err.message)
   }
+}
+
+
+exports.getallinfo = async (req, res)  => {
+  // console.log(req.params);
+    try{
+const allinfo = await receipt.find()
+// console.log(allinfo);
+return res.status(201).json({
+     allinfo
+    // status:"success",
+    // message:"candidate get successfully",
+    // count: allusers.length
+})
+    }
+    catch(err){
+console.log(err.message)
+    }
 }

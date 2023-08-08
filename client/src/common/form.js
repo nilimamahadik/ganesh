@@ -1,37 +1,26 @@
+import React from "react";
 import { useContext } from "react";
 import { Dropdown, Menu, Table } from "antd";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
 import { TextField } from '@material-ui/core';
-
 import axios from 'axios';
-
 import { Typography } from '@material-ui/core';
-
 import { useParams } from 'react-router-dom';
-
 import { useNavigate } from "react-router-dom";
-
 import Button from '@mui/material/Button'
-
-
-
 import { AccountContext } from "../context/AccountProvider";
-
-
+import Drawer from "./drawer";
+import {RWebShare} from "react-web-share";
+// import { ExportToExcel } from "../Admin/csv";
 
 function CustomTable({ data }) {
-
   const [columnItems, setColumnItems] = useState([]);
-
   const [columnsToShow, setColumnsToShow] = useState([]);
-
-
+  
 
   const columns = [
-
     {
 
       title: "Receipt No.",
@@ -85,24 +74,37 @@ function CustomTable({ data }) {
       key: "receipt",
 
       render: (text, record) => (
-
-
-
         <Link to={`/poster/${record._id}`}>
-
           <Button variant="contained">View Receipt</Button>
-
         </Link>
 
       ),
 
     },
+    {
+
+      title: "Share",
+
+      dataIndex: "share",
+
+      key: "share",
+      render: (text, record) => (
+        <RWebShare
+          data={{
+            text: "ONLINE BHARAT",
+            url: `${window.location.protocol}//${window.location.host}/poster/${record._id}`,
+            title: "ONLINE BHARAT",
+          }}
+        >
+        
+          <Button variant="contained">Share </Button>
+        </RWebShare>
+      )
 
 
 
+    },
   ];
-
-
 
   useEffect(() => {
 
@@ -111,8 +113,6 @@ function CustomTable({ data }) {
     setColumnsToShow(columns);
 
   }, []);
-
-
 
   const colVisibilityClickHandler = (col) => {
 
@@ -144,8 +144,6 @@ function CustomTable({ data }) {
 
   };
 
-
-
   const menuItems = columns.map((item) => {
 
     return {
@@ -157,8 +155,6 @@ function CustomTable({ data }) {
     };
 
   });
-
-
 
   const addKeys = (arr) => {
 
@@ -223,17 +219,11 @@ function CustomTable({ data }) {
   );
 
 }
-
-
-
 const FormExample = () => {
+  // const [isOpen, setIsOpen] = React.useState(false)
 
   const params = useParams()
-
-  // console.log(params);
-
   const { info, user } = useContext(AccountContext);
-
   // console.log(user);
 
   // console.log(info);
@@ -241,8 +231,11 @@ const FormExample = () => {
   const [data, setData] = useState([])
 
   const [users, setUsers] = useState({})
-
+// const [userData,setUserData] = useState([])
   const navigate = useNavigate();
+  // const [state, setState] = useState({
+  //   left : false,
+  //  });
 
   const [formData, setFormData] = useState({
 
@@ -267,18 +260,24 @@ const FormExample = () => {
     }))
 
   }
+  // useEffect(()=>{
+  //   fetch(`https://jsonplaceholder.typicode.com/albums`)
+  //   .then(response => response.json())
+  //   .then(json => {
+  //     console.log("json",json)
+  //     setUserData(json)
+  //   })
+  // },[])
 
   const getallusers = async () => {
 
-
-
-    const get = axios.get(`/api/getallusers/${params.id}`)
+const get = axios.get(`/api/getallusers/${params.id}`)
 
       .then((res) => {
 
         setData(res.data.data);
 
-        //  console.log(res.data);
+         console.log(res.data);
 
         localStorage.setItem("count", JSON.stringify(res.data));
 
@@ -314,7 +313,7 @@ const FormExample = () => {
 
   }, []);
 
-  console.log(users);
+  // console.log(users);
 
   const handleSubmit = (event) => {
 
@@ -378,15 +377,7 @@ const FormExample = () => {
     }
 
     first();
-
-
-
   }
-
-
-
-
-
   // console.log(value)
 
   // console.log(users);
@@ -394,15 +385,25 @@ const FormExample = () => {
   return (
 
     <>
-      
       <div className="card column-design" >
 
-        <div className="card-body" style={{ backgroundImage: 'url()' }}>
+        <div className="card-body">
+
+          {/* <RWebShare
+            data={{
+              text: "Job Portal",
+              url: `${window.location.protocol}//${window.location.host}/poster/${users.id}}`,
+              title: "Job Portal",
+            }}
+          >
+            <p class="btn btn-otline-dark align-items-center"><i class="icon-share"></i> Share</p>
+          </RWebShare> */}
 
           <div className="front" style={{ backgroundColor: '#FA7D09' }}>
-          <Link to="/">
-        <Button variant="contained">Log Out</Button>
-      </Link>
+            <Link to="/">
+              <Button variant="contained">Log Out</Button>
+            </Link>
+            {/* <Drawer /> */}
             <Typography variant="h6" align="center">
 
               <b>|| श्री गणेशाय नमः ||</b>
@@ -426,6 +427,7 @@ const FormExample = () => {
             <hr />
 
           </div>
+
 
           <div>
 
@@ -524,19 +526,28 @@ const FormExample = () => {
             <h2><u>Contributors</u></h2>
 
             <CustomTable data={data} />
+            {/* <RWebShare
+            data={{
+              text: "Job Portal",
+              url: `${window.location.protocol}//${window.location.host}/poster/${users.id}}`,
+              title: "Job Portal",
+            }}
+          >
+            <p class="btn btn-otline-dark align-items-center"><i class="icon-share"></i> Share</p>
+          </RWebShare> */}
 
-            <td>
 
-            </td>
 
             <br></br>
 
           </div>
-
         </div>
+        {/* <div>
+          <ExportToExcel userDetail={userData}/>
+        </div> */}
 
       </div>
-
+      {/* <Drawer/> */}
     </>
 
   );
