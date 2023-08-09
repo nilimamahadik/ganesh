@@ -5,10 +5,10 @@ const app = express();
 const mongoose =require('mongoose');
 app.use(express.json())
 const helmet = require('helmet');
-var cors = require('cors')
+// var cors = require('cors')
 // app.use(cors())
 app.use(helmet());
-// env.config();
+ env.config();
 
 
 const authRoutes =require("./src/routes/user");
