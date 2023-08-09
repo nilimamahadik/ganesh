@@ -1,17 +1,14 @@
 
 import React, { useMemo, useEffect, useState } from 'react';
 import axios from 'axios';
-import { useContext } from "react";
-import { AccountContext } from "../context/AccountProvider";
 import { Table, TableHead, TableBody, TableRow, TableCell, Button } from '@mui/material';
-
+import { useNavigate } from "react-router-dom";
 
 const UserList = () => {
   const [data, setData] = useState([]);
   const [count, setCount] = useState({})
-  const { info } = useContext(AccountContext);
   const [amount, setAmount] = useState("")
-
+  const navigate = useNavigate();
   // console.log(info);
 
   const user_management = async (props) => {
@@ -54,7 +51,9 @@ const UserList = () => {
       const parsedInfo = JSON.parse(savedInfo);
       user_management(parsedInfo);
     }
-
+else{
+  navigate("/");
+}
     const savedCount = localStorage.getItem('count');
     if (savedCount) {
       const parsedCount = JSON.parse(savedCount);

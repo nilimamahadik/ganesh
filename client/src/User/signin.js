@@ -1,12 +1,9 @@
 import React, { Component, useState, useRef, useEffect } from "react";
 // import Page from "./page";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { AccountContext } from "../context/AccountProvider";
 import axios from "axios";
 
 const UserLogin = () => {
-  const { setUser } = useContext(AccountContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   // const [loading,setLoading] = useState(false)
@@ -47,7 +44,6 @@ const UserLogin = () => {
           // console.log(data);
           alert("login successful");
           localStorage.setItem("link", JSON.stringify(data));
-          setUser(data);
           navigate(`/form/${data.id}`)
 
         } else {

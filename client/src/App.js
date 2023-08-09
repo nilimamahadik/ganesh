@@ -1,7 +1,5 @@
-
 import React from 'react';
-import {createBrowserRouter} from "react-router-dom";
-import AccountProvider from './context/AccountProvider';
+import { createBrowserRouter } from "react-router-dom";
 import AdminLogin from "./Admin/signin";
 import AdminSignUp from "./Admin/signup";
 import HomePage from "./Homepage";
@@ -14,62 +12,62 @@ import App from './Homepage';
 import FormExampleAdmin from './common/form2';
 import Drawer from './common/drawer';
 // import { ExportToExcel } from './Admin/csv';
-import  Sheet  from './common/excel';
+import Sheet from './common/excel';
 
 
 
 
 const router = createBrowserRouter(
- 
-  
+
+
   [
-  {
-    path: "/",
-    element: <App />,
-  },
-  {
-    path:"/userlogin",
-    element:< UserLogin/>,
-  },
-  {
-    path: "/adminlogin",
-    element: <AdminLogin />,
-  },
-  {
-    path: "/adminsignup",
-    element: <AdminSignUp />,
-  },
-  {
-    path:"/form/:id",
-    element:< FormExample/>,
-  },
-  {
-    path:"/userlist",
-    element: <UserList />,
-  },
-  {
-    path:"/usersignup",
-    element:< UserSignUp/>,
-  },
- 
-  {                                                                                                                                                                                                                                                                                                                                         
-    path:"/poster/:id",
-    element:< Poster/>,
-  },
-  {
-    path:"/form/admin/:id",
-    element:< FormExampleAdmin/>,
-  },
-  {
-    path:"/csv/:id",
-    element:< Sheet />,
-  }
+    {
+      path: "/",
+      element: <App />,
+    },
+    {
+      path: "/userlogin",
+      element: < UserLogin />,
+    },
+    {
+      path: "/adminlogin",
+      element: <AdminLogin />,
+    },
+    {
+      path: "/adminsignup",
+      element: <AdminSignUp />,
+    },
+    {
+      path: "/form/:id",
+      element: < FormExample />,
+    },
+    {
+      path: "/userlist",
+      element: <UserList />,
+    },
+    {
+      path: "/usersignup",
+      element: < UserSignUp />,
+    },
+
+    {
+      path: "/poster/:id",
+      element: < Poster />,
+    },
+    {
+      path: "/form/admin/:id",
+      element: < FormExampleAdmin />,
+    },
+    {
+      path: "/csv/:id",
+      element: < Sheet />,
+    }
 
 
 
-  
 
-]
+
+  ]
 
 );
 

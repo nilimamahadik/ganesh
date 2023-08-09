@@ -23,7 +23,7 @@ const applySchema = new mongoose.Schema(
 
         type: Number,
 
-        required: true
+       
 
     },
 
@@ -31,7 +31,7 @@ const applySchema = new mongoose.Schema(
 
         type:Number,
 
-        required: true
+        
 
     },
     address:{

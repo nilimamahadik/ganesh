@@ -4,10 +4,10 @@ const env= require('dotenv');
 const app = express();
 const mongoose =require('mongoose');
 app.use(express.json())
-const helmet = require('helmet');
-// var cors = require('cors')
-// app.use(cors())
-app.use(helmet());
+// const helmet = require('helmet');
+var cors = require('cors')
+app.use(cors())
+// app.use(helmet());
 env.config();
 
 

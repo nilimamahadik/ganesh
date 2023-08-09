@@ -1,11 +1,9 @@
 import React, { Component, useState , useEffect} from "react";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { AccountContext } from "../context/AccountProvider";
+
 
 
 export default function AdminLogin() {
-const {setInfo} = useContext(AccountContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -54,7 +52,6 @@ const {setInfo} = useContext(AccountContext);
       if (data.status === "Admin" && data.active === "success") {
         alert("Login successful");
         localStorage.setItem("info", JSON.stringify(data));
-        setInfo(data);
         navigate(`/form/admin/${data.id}`);
       } else {
         alert("Kindly Complete Your KYC to Login");

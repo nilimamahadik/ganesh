@@ -1,5 +1,4 @@
 import React from "react";
-import { useContext } from "react";
 import { Dropdown, Menu, Table } from "antd";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { useState, useEffect } from "react";
@@ -10,7 +9,6 @@ import { Typography } from '@material-ui/core';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button'
-import { AccountContext } from "../context/AccountProvider";
 import Drawer from "./drawer";
 import {RWebShare} from "react-web-share";
 // import { ExportToExcel } from "../Admin/csv";
@@ -91,9 +89,9 @@ function CustomTable({ data }) {
       render: (text, record) => (
         <RWebShare
           data={{
-            text: "ONLINE BHARAT",
+            text: "BHARAT ONLINE",
             url: `${window.location.protocol}//${window.location.host}/poster/${record._id}`,
-            title: "ONLINE BHARAT",
+            title: "BHARAT ONLINE",
           }}
         >
         
@@ -223,7 +221,6 @@ const FormExample = () => {
   // const [isOpen, setIsOpen] = React.useState(false)
 
   const params = useParams()
-  const { info, user } = useContext(AccountContext);
   // console.log(user);
 
   // console.log(info);
@@ -309,6 +306,9 @@ const get = axios.get(`/api/getallusers/${params.id}`)
 
       setUsers(parsedUser);
 
+    }
+    else{
+      navigate("/");
     }
 
   }, []);

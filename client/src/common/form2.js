@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import { Dropdown, Menu, Table } from "antd";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { useState, useEffect } from "react";
@@ -10,7 +9,6 @@ import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button'
 import Drawer from "./drawer";
-import { AccountContext } from "../context/AccountProvider";
 import {RWebShare} from "react-web-share";
 
 
@@ -62,9 +60,9 @@ function CustomTable({ data }) {
       render: (text, record) => (
         <RWebShare
           data={{
-            text: "ONLINE BHARAT",
+            text: " BHARAT ONLINE",
             url: `${window.location.protocol}//${window.location.host}/poster/${record._id}`,
-            title: "ONLINE BHARAT",
+            title: " BHARAT ONLINE",
           }}
         >
         
@@ -142,7 +140,6 @@ function CustomTable({ data }) {
 const FormExampleAdmin = () => {
   const params = useParams()
   // console.log(params);
-  const { info, user } = useContext(AccountContext);
   // console.log(user);
   // console.log(info);
   const [data, setData] = useState([])
@@ -183,6 +180,10 @@ const FormExampleAdmin = () => {
       const parsedInfo = JSON.parse(savedInfo);
       setValue(parsedInfo);
     }
+    else{
+      navigate("/");
+    }
+    
   }, []);
   const handleSubmit = (event) => {
     event.preventDefault();

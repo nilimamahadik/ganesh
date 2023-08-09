@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 
 const AdminSignUp = () => {
+  
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -11,11 +12,16 @@ const AdminSignUp = () => {
   const [mandalname, setMandalName] = useState("");
   const [registration, setRegistration] = useState("")
   const [pincode , setPincode] = useState("")
+  
+
+  
+  
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    fetch(`/api/create_admin_account`, {
+    
+   
+   fetch(`/api/create_admin_account`, {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -47,14 +53,14 @@ const AdminSignUp = () => {
         }
       });
   };
-
+  
   return (
     <div className="auth-wrapper">
       <div className="auth-inner">
         <form onSubmit={handleSubmit}>
           <h3>Sign Up</h3>
           <div className="mb-3">
-          <label>Association Name</label>
+          <label>Association Name*</label>
             <input
               type="text"
               className="form-control"
@@ -73,9 +79,10 @@ const AdminSignUp = () => {
             />
             
           </div>
+       
 
           <div className="mb-3">
-            <label>Full Name</label>
+            <label>Full Name*</label>
             <input
               type="text"
               className="form-control"
@@ -93,7 +100,7 @@ const AdminSignUp = () => {
             />
           </div>
           <div className="mb-3">
-            <label>Address</label>
+            <label>Address*</label>
             <input
               type="text"
               className="form-control"
@@ -102,7 +109,7 @@ const AdminSignUp = () => {
             />
           </div>
           <div className="mb-3">
-            <label>Pin Code</label>
+            <label>Pin Code*</label>
             <input
               type="text"
               className="form-control"
@@ -111,7 +118,7 @@ const AdminSignUp = () => {
             />
           </div>
           <div className="mb-3">
-            <label>Email address</label>
+            <label>Email address*</label>
             <input
               type="email"
               className="form-control"
@@ -121,7 +128,7 @@ const AdminSignUp = () => {
           </div>
 
           <div className="mb-3">
-            <label>Password</label>
+            <label>Password*</label>
             <input
               type="password"
               className="form-control"

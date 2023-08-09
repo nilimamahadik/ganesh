@@ -57,7 +57,7 @@ exports.create_admin_account = async (req, res) => {
 // console.log(req.body);
   try {
     const admin = await Admin.findOne({ email: req.body.email }).exec();
-    console.log("ADMIN :: ", admin)
+    // console.log("ADMIN :: ", admin)
     if (admin) return res.status(400).json({
       message: ' Admin already registered'
     });

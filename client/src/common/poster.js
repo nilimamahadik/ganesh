@@ -5,10 +5,9 @@ import { Typography, TextField, Grid, Paper, Button } from '@material-ui/core';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import footer4 from '../image/footer4.jpg'
+import { useNavigate } from "react-router-dom";
 import './poster.css'
 
-import { useContext } from "react";
-import { AccountContext } from "../context/AccountProvider";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,17 +25,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Poster = (props) => {
+const Poster = (props) => {       
   const param = useParams()
   // console.log(param);
-  const {user,info} = useContext(AccountContext);
   
   const classes = useStyles();
   const componentsPDF = useRef();
   const [data, setData] = useState({});
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 const [value, setValue] = useState({});
-  
+const navigate = useNavigate();
 // console.log(user);
   const handlePrint = () => {
     setIsButtonDisabled(true);
@@ -73,11 +71,8 @@ const [value, setValue] = useState({});
       const parsedInfo = JSON.parse(savedInfo);
       setValue(parsedInfo);
     }
-   
   }, []);
-// console.log(value.id);
-// console.log(data);
-// console.log(value.group_id);
+
   return (
     <>
  
