@@ -159,7 +159,7 @@ const FormExampleAdmin = () => {
   }
   const getallusers = async () => {
 
-    const get = axios.get(`/api/getallusers/${params.id}`)
+    const get = axios.get(`http://localhost:5000/api/getallusers/${params.id}`)
       .then((res) => {
         setData(res.data.data);
         //  console.log(res.data);
@@ -205,7 +205,7 @@ const FormExampleAdmin = () => {
     const first = () => {
       // console.log(form);
       return axios
-        .post("/api/submit", form)
+        .post("http://localhost:5000/api/submit", form)
         .then((response) => {
           getallusers()
           return response;

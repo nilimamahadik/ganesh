@@ -23,6 +23,13 @@ const applySchema = new mongoose.Schema(
         required: true
 
     },
+    phone :{
+
+        type:Number,
+
+        required: true
+
+    },
 
     amount:{
 

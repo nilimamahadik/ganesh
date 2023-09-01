@@ -21,7 +21,7 @@ const AdminSignUp = () => {
     e.preventDefault();
     
    
-   fetch(`/api/create_admin_account`, {
+   fetch(`http://localhost:5000/api/create_admin_account`, {
       method: "POST",
       crossDomain: true,
       headers: {

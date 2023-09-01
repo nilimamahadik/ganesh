@@ -21,7 +21,7 @@ const UserSignUp = () => {
   
   useEffect(()=>{
     const getallmandals = async() =>{
-        const get = axios.get("/api/getallmandals")
+        const get = axios.get("http://localhost:5000/api/getallmandals")
         .then((res)=>{
   
           // console.log(res)
@@ -57,7 +57,7 @@ const UserSignUp = () => {
 
 
     // }
-    fetch("/api/create_user_account", {
+    fetch("http://localhost:5000/api/create_user_account", {
       method: "POST",
       crossDomain: true,
       headers: {

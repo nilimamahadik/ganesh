@@ -13,6 +13,7 @@ import FormExampleAdmin from './common/form2';
 import Drawer from './common/drawer';
 // import { ExportToExcel } from './Admin/csv';
 import Sheet from './common/excel';
+import Forget from './Admin/forget';
 
 
 
@@ -61,6 +62,10 @@ const router = createBrowserRouter(
     {
       path: "/csv/:id",
       element: < Sheet />,
+    },
+    {
+      path: "/Admin/forget",
+      element: < Forget />,
     }
 
 

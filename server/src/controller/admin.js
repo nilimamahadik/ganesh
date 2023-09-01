@@ -114,7 +114,7 @@ exports.create_admin_account = async (req, res) => {
 
 
 exports.authenticate_admin = async (req, res) => {
-  // console.log(req.body)
+  console.log(req.body)
   try {
     const { email, password } = req.body;
     // Check if user exists
@@ -138,6 +138,7 @@ exports.authenticate_admin = async (req, res) => {
             id: user.id,
             email: user.email
           }
+          console.log(user);
           jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 31556926 }, (err, token) => {
             return res.status(200).json({
               message: "Sign In success",

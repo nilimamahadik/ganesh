@@ -69,6 +69,7 @@ const {
     name,
     address,
     amount,
+    phone,
     group_id,
     receiver
 } = req.body;
@@ -77,6 +78,7 @@ const candidate = new receipt({
     date,
     name,
     address,
+    phone,
     amount,
     group_id,
     receiver

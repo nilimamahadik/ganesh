@@ -10,7 +10,7 @@ const Sheet = () => {
   const [users, setUsers] = useState([])
 // console.log(params);
   useEffect(() => {
-    fetch(`/api/getallusers/${params.id}`)
+    fetch(`http://localhost:5000/api/getallusers/${params.id}`)
       .then(response => response.json())
       .then(json => {
         console.log("json", json);

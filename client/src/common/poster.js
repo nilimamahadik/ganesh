@@ -46,7 +46,7 @@ const navigate = useNavigate();
 
   useEffect(() => {
     const getsingleusers = async () => {
-      const get = axios.get(`/api/getsingleusers/${param.id}`)
+      const get = axios.get(`http://localhost:5000/api/getsingleusers/${param.id}`)
         .then((res) => {
            
 // console.log(res);

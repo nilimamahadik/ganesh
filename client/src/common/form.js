@@ -50,6 +50,17 @@ function CustomTable({ data }) {
       responsive: ["md"]
 
     },
+    {
+
+      title: "Phone Number",
+
+      dataIndex: "phone",
+
+      key: "phone",
+
+      responsive: ["md"]
+
+    },
 
     {
 
@@ -240,7 +251,8 @@ const FormExample = () => {
 
     address: "",
 
-    amount: ""
+    amount: "",
+     phone :""
 
   })
 
@@ -268,13 +280,13 @@ const FormExample = () => {
 
   const getallusers = async () => {
 
-const get = axios.get(`/api/getallusers/${params.id}`)
+const get = axios.get(`http://localhost:5000/api/getallusers/${params.id}`)
 
       .then((res) => {
 
         setData(res.data.data);
 
-         console.log(res.data);
+        //  console.log(res.data);
 
         localStorage.setItem("count", JSON.stringify(res.data));
 
@@ -282,7 +294,7 @@ const get = axios.get(`/api/getallusers/${params.id}`)
 
       .catch((err) => {
 
-        console.log(err);
+        console.log(err); 
 
       })
 
@@ -313,7 +325,7 @@ const get = axios.get(`/api/getallusers/${params.id}`)
 
   }, []);
 
-  // console.log(users);
+  // console.log(data);
 
   const handleSubmit = (event) => {
 
@@ -326,7 +338,8 @@ const get = axios.get(`/api/getallusers/${params.id}`)
       address: formData.address,
 
       amount: formData.amount,
-
+      
+    phone : formData.phone,
       group_id: params.id,
 
       receiver: users.name
@@ -341,6 +354,7 @@ const get = axios.get(`/api/getallusers/${params.id}`)
       address: "",
 
       amount: "",
+      phone:"",
 
       group_id: ""
 
@@ -350,11 +364,11 @@ const get = axios.get(`/api/getallusers/${params.id}`)
 
     const first = () => {
 
-      // console.log(form);
+      console.log(form);
 
       return axios
 
-        .post("/api/submit", form)
+        .post("http://localhost:5000/api/submit", form)
 
         .then((response) => {
 
@@ -488,6 +502,31 @@ const get = axios.get(`/api/getallusers/${params.id}`)
               </div>
 
               <br /><br />
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+
+<label htmlFor="नंबर"><b>नंबर:</b></label> &nbsp;&nbsp;
+
+<TextField
+
+  type="text"
+
+  label="phone"
+
+  name='phone'
+
+  value={formData.phone}
+
+  onChange={handleonchange}
+
+  required
+
+  multiline
+
+/>
+
+</div>
+
+<br /><br />
 
               <div style={{ display: 'flex', alignItems: 'center' }}>
 

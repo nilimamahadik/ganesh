@@ -20,7 +20,7 @@ export default function AdminLogin() {
       password,
     }
 
-    fetch(`/api/authenticate_admin`, {
+    fetch(`http://localhost:5000/api/authenticate_admin`, {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -35,6 +35,7 @@ export default function AdminLogin() {
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         // console.log(data, "userRegister");
         // console.log(data)
       //   if (data.status == "Admin") {
@@ -87,7 +88,7 @@ export default function AdminLogin() {
           </div>
 
           <div className="mb-3">
-            <div className="custom-control custom-checkbox">
+            {/* <div className="custom-control custom-checkbox">
               <input
                 type="checkbox"
                 className="custom-control-input"
@@ -96,7 +97,8 @@ export default function AdminLogin() {
               <label className="custom-control-label" htmlFor="customCheck1">
                 Remember me
               </label>
-            </div>
+            </div> */}
+            <a href="/forget" class="font-size-3 text-dodger line-height-reset">Forget Password</a>
           </div>
 
           <div className="d-grid">
